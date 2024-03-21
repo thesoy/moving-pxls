@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <body>
-	<input type="file" id="fileInput" accept="image/png, image/*" />
+   <body>
+        <div class="slider-container">
+            <label for="lineSpeed">Line Creation Speed:</label>
+            <input type="range" id="lineSpeed" min="1" max="50" value="10">
+        </div>
+        <div class="slider-container">
+        </div>
         <canvas id="pix" width="500" height="500"></canvas>
+        <br>
+        <input type="file" id="fileInput" accept="image/png, image/*" />
+        <script src="./index.js"></script>
     </body>
     <link rel="stylesheet" type="text/css" href="style.css"/> 
     <script src="./index.js"></script>
