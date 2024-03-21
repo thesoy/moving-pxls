@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 let x = 0;
 const pos = [];
 
+const lineSpeedSlider = document.getElementById('lineSpeed');
+
 fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -29,36 +31,32 @@ fileInput.addEventListener('change', (event) => {
                 }
             }
 
-            
-            setInterval(()=>{                
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+            setInterval(() => {                
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }, 300);
 
-
-            },250)
             setInterval(() => {
                 let x = 0;
-            
                 setInterval(() => {
-                    x +=   10;
-            
+                    x += parseInt(lineSpeedSlider.value); 
+
                     ctx.fillStyle = 'black';
-            
+
                     for (let yy = 0; yy < canvas.height; yy++) {
-                        for (let ywn=0;ywn<3;ywn++){
-                        let c = pos[x + canvas.width * yy]?.[4];
-                        let clr=[[255,0,0],[0,255,0],[0,0,255]]
-                        
-                        const speed = ((c[ywn]+clr[ywn][ywn])/(255*2)) 
-                        
-                        ctx.fillStyle = `rgba(${clr[ywn][0]},${clr[ywn][1]},${clr[ywn][2]},1)`;
-                        const adjustedX = x * speed; // Adjust x based on speed
-                        if (adjustedX >= canvas.width) continue; // Skip if out of canvas bounds
-                        ctx.fillRect(adjustedX, yy, 1, 1);
+                        for (let ywn = 0; ywn < 3; ywn++) {
+                            let c = pos[x + canvas.width * yy]?.[4];
+                            let clr = [[255, 0, 0], [0, 255, 0], [0, 0, 255]];
+
+                            const speed = ((c[ywn] + clr[ywn][ywn]) / (255 * 2));
+
+                            ctx.fillStyle = `rgba(${clr[ywn][0]}, ${clr[ywn][1]}, ${clr[ywn][2]}, 0.33=)`;
+                            const adjustedX = x * speed; 
+                            if (adjustedX >= canvas.width) continue; 
+                            ctx.fillRect(adjustedX, yy, 2, 2);
+                        }
                     }
-                }
-                }, 100);
+                }, 100 );
             }, 400);
-            
         };
     };
     reader.readAsDataURL(file);
