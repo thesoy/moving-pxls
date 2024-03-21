@@ -1,3 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #23002a;
+}
+.slider-container {
+    margin-left: 15%;
+    margin-top: 20px;
+}
+.slider-container label {
+    display: block;
+    margin-top: 10px;
+}
+#pix {
+    border: 1px solid #000000;
+}
+
 body{
-    background-color:black;
+    color: white;
 }
